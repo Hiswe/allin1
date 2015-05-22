@@ -5,13 +5,12 @@ var chalk   = require('chalk');
 
 var pack    = require('./package.json');
 
-// var conf    = require('./server/settings.coffee')
+var conf    = require('./server/config.js');
 // console.log(conf)
 
 //  Load boot file and fire away!
 var app     = require('./server')();
-// // var port    = conf.PORT;
-var port    = 3000;
+var port    = conf.PORT;
 
 var server  = http.createServer(app)
 
@@ -21,6 +20,4 @@ if (!port) {
 
 server.listen(port);
 
-// console.log(chalk.blue('[APP]'), 'Express server', conf.version, 'listening on port', port, 'on', conf.ENV, 'mode');
-
-return false;
+console.log(chalk.blue('[APP]'), 'Express server', conf.version, 'listening on port', port, 'on', conf.ENV, 'mode');

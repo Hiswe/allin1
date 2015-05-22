@@ -6,6 +6,7 @@ var args        = require('yargs').argv;
 var gulp        = require('gulp');
 var $           = require('gulp-load-plugins')();
 var lazypipe    = require('lazypipe');
+var browserSync = require('browser-sync');
 // “Global” variables
 var env         = args.prod ? 'prod' : 'dev';
 var dest        = {
@@ -59,4 +60,52 @@ gulp.task('css', function() {
     .pipe(gulp.dest(dest[env]))
     .pipe($.filter(['*', '!*.map']))
     // .pipe(reload({stream:true}));
+});
+
+
+
+
+////////
+// DEV
+////////
+
+gulp.task('watch', function() {
+  // $.livereload.listen();
+  gulp.watch(['./css/**/*.styl'], ['css']);
+  // gulp.watch(['./assets/js/**/*.coffee', './assets/js/**/*.js'], ['js']);
+  // gulp.watch('./views/**/*.jade')
+  // .on('change', function() {
+  //   // $.notify(msg('reload html'));
+  //   // $.livereload.changed('index.html');
+  // });
+});
+
+// browser-sync + nodemon
+// https://gist.github.com/sogko/b53d33d4f3b40d3b4b2e
+
+gulp.task('default', ['browser-sync', 'watch'], function () {});
+
+gulp.task('browser-sync', ['nodemon'], function() {
+  browserSync.init(null, {
+    proxy: 'http://localhost:5000',
+    files: ['.tmp/**/*.*', 'public/**/*.*'],
+    open: false,
+    port: 7000,
+  });
+});
+
+var init = true;
+gulp.task('nodemon', function (cb) {
+  return $.nodemon({
+    script: 'index.js',
+    ext: 'js jade json',
+    ignore: ['node_modules/*', 'gulpfile.js'],
+    env:    { 'NODE_ENV': 'development' }
+  }).on('start', function () {
+    // https://gist.github.com/sogko/b53d33d4f3b40d3b4b2e#comment-1457582
+    if (init) {
+      init = false;
+      cb();
+    }
+  });
 });
