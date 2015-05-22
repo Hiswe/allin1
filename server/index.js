@@ -1,6 +1,6 @@
 var express         = require('express');
 var path            = require('path');
-// # Resource      = require 'express-resource'
+// Resource      = require 'express-resource'
 var I18n            = require('i18n-2');
 var methodOverride  = require('method-override');
 var compression     = require('compression');
@@ -9,15 +9,13 @@ var bodyParser      = require('body-parser');
 var errorhandler    = require('errorhandler');
 var morgan          = require('morgan');
 
-// log     =
 var conf            = require('./config');
 var logger          = require('./logger')('[Boot]');
 
 module.exports = function () {
-  // # Create Server
+  // Create Server
   var app = express();
 
-  // # Load Expressjs config
   logger.prompt('Setup application');
   // set some variables
   app.set('appName', conf.APP_NAME);
@@ -41,7 +39,8 @@ module.exports = function () {
   I18n.expressBind(app, {
     // setup some locales - other locales default to en silently
     // locales: ['en', 'fr', 'cn'],
-    locales: ['fr'],
+    locales: ['en', 'fr'],
+    // locales: ['fr'],
     // change the cookie name from 'lang' to 'locale'
     cookieName: 'locale'
   })

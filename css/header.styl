@@ -1,0 +1,50 @@
+header {
+  background: $c-brand;
+  padding: $gutter 0 28px;
+  background-image: url('wall.svg');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: 33px 25px;
+}
+
+.header-logo {
+  margin: 0 auto;
+  padding-bottom: $gutter;
+
+  p {
+    px2rem(11);
+    font-weight: 200;
+    color: $c-brand-light;
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    border: 0;
+    text-align: center;
+  }
+  img {
+    width: 230px;
+    height: 55px;
+  }
+}
+
+.header-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+
+  a {
+    padding: ($gutter / 2) 0;
+    display: block;
+    color: $c-brand-light;
+    border-bottom: 0;
+  }
+
+  li {
+    border-top: 1px solid rgba($c-brand-light, .25);
+  }
+}
+
+
