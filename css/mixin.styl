@@ -1,0 +1,41 @@
+px2rem($$size) {
+  font-size: unit($$size, 'px');
+  font-size: unit($$size/16, 'rem');
+}
+
+px2em(px, ref = 16px) {
+  1em * px / ref
+}
+
+crisp-font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+// http://foundation.zurb.com/docs/media-queries.html
+$small-range      = 0, px2em(640);
+$medium-range     = px2em(641), px2em(1024);
+$large-range      = px2em(1025), px2em(1440);
+$xlarge-range     = px2em(1441), px2em(1920);
+$xxlarge-range    = px2em(1921);
+
+mq($$size) {
+  if ($$size == "small-only") {
+    @media only screen and (max-width: $small-range[1]) {
+      {block}
+    }
+  } else if ($$size == "medium-up") {
+    @media only screen and (min-width: $medium-range[0]) {
+      {block}
+    }
+  } else if ($$size == "medium-only") {
+    @media only screen and (min-width: $medium-range[0]) and (max-width: $medium-range[1]) {
+      {block}
+    }
+  } else if ($$size == "big-up") {
+    @media only screen and (min-width: $large-range[0]) {
+      {block}
+    }
+  } else {
+    {block}
+  }
+}
