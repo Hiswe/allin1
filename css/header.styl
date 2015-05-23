@@ -1,22 +1,19 @@
 header {
   background: $c-brand;
-  padding: $gutter 0 28px;
-  background-image: url('wall.svg');
-  background-repeat: repeat-x;
-  background-position: bottom center;
-  background-size: 33px 25px;
+  padding: $gutter 0 0;
+
+  +mq('small-only') {
+    padding-bottom: 28px;
+    background-image: url('wall.svg');
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    background-size: 33px 25px;
+  }
 }
 
 .header-logo {
   margin: 0 auto;
   padding-bottom: $gutter;
-
-  p {
-    px2rem(11);
-    font-weight: 200;
-    color: $c-brand-light;
-    margin: 0;
-  }
 
   a {
     display: block;
@@ -29,22 +26,71 @@ header {
   }
 }
 
-.header-nav {
+.header-baseline {
+  px2rem(14);
+  font-weight: 200;
+  color: $c-brand-light;
+  margin: 0;
+
+  +mq('medium-up') {
+    br {
+      display: none;
+    }
+  }
+}
+
+.header-nav-in {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   text-align: center;
+  max-width: 960px;
 
   a {
-    padding: ($gutter / 2) 0;
+    padding: $gutter-2 0;
     display: block;
     color: $c-brand-light;
     border-bottom: 0;
   }
 
-  li {
-    border-top: 1px solid rgba($c-brand-light, .25);
+  +mq('small-only') {
+    li {
+      border-top: 1px solid rgba($c-brand-light, .25);
+    }
+  }
+  +mq('medium-up') {
+
   }
 }
 
++mq('medium-up') {
 
+  .header-nav-out {
+    background: $c-brand url('wall.svg') repeat-x top center;
+    padding-top: 25px;
+    background-size: 33px 25px;
+  }
+
+  .header-nav {
+    background: $c-dark;
+    border-bottom: 1px solid $c;
+  }
+
+  .header-nav-in {
+    clearfix();
+
+    li {
+      float: left;
+      width: 25%;
+    }
+    a {
+      transition: color .25s;
+      padding: $gutter 0;
+
+      &:hover {
+        color: $c-white;
+      }
+    }
+
+  }
+}

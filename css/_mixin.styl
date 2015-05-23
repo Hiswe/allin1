@@ -1,3 +1,12 @@
+clearfix() {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
 px2rem($$size) {
   font-size: unit($$size, 'px');
   font-size: unit($$size/16, 'rem');

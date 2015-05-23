@@ -1,0 +1,41 @@
+#contact {
+  background: $c-contact;
+  clearfix();
+  padding-bottom: ($gutter*3);
+
+  h1 {
+    color: $c;
+  }
+}
+
+
+.contact-item {
+  padding-top: $gutter;
+
+  dt {
+    padding: $gutter-2 0 $gutter-4 ;
+    color: $c;
+    border-bottom: 1px solid $c-dark;
+    font-weight: 700;
+  }
+  dd + dt {
+    padding-top: $gutter-2;
+  }
+
+  dd {
+    padding: $gutter-2;
+    margin: 0;
+  }
+
+  +mq('medium-plus') {
+    float: left;
+    width: 50%;
+    &:nth-child(odd) {
+      padding-right: $gutter;
+    }
+    &:nth-child(even) {
+      padding-left: $gutter;
+    }
+  }
+}
+

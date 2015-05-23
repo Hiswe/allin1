@@ -1,9 +1,9 @@
 header
   h1.header-logo: a(href="#home")
     img(src="logo-allin1.svg", alt="All in 1 Guesthouse")
-    p= __('baseline')
-  .sticky-wrapper: nav.bg-header-sticky
-    ul.header-nav
+    p.header-baseline!= __('baseline')
+  .sticky-wrapper.header-nav-out: nav.bg-header-sticky.header-nav
+    ul.header-nav-in
       li: a(href="#home") #{__('home')}
       li: a(href="#rooms") #{__('rooms')}
       li: a(href="#services") #{__('services')}
