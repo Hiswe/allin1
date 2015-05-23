@@ -11,5 +11,6 @@
 	"contact-email": "Email:",
 	"contact-card": "Print the card:",
 	"contact-title": "contact",
-	"services-title": "Facilities"
+	"services-title": "Facilities",
+	"rooms-title": "rooms"
 }
