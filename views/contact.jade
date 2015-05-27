@@ -1,22 +1,24 @@
 section#contact: .section-in
   h1.u-title= __('contact-title')
 
-  p= __('contact-pres')
+  div
+    dl.contact-item
+      dt= __('contact-phone')
+      dd + 66 (0)53 207133
+      dd + 66 (0)87 0783435
 
-  dl.contact-item
-    dt= __('contact-adress')
-    dd
-      | 31/1 Moonmuang Road, Soi 1-2 <br>
-      | T. Phrasingh, A. Muang <br>
-      | Chiang mai 50200, Thailand
+    dl.contact-item
+      dt= __('contact-email')
+      dd: a.btn(href="mailto:zinegilou@hotmail.com&cc=zinegilou85@gmail.com") zinegilou@hotmail.com
 
-  dl.contact-item
-    dt= __('contact-phone')
-    dd + 66 (0)53 207133
-    dt= __('contact-mobile')
-    dd + 66 (0)87 0783435
+    dl.contact-item.contact-item-big
+      dt= __('contact-adress')
+      dd
+        | 31/1 Moonmuang Road, Soi 1-2 <br>
+        | T. Phrasingh, A. Muang <br>
+        | Chiang mai 50200, Thailand
+        //- TODO contact card
 
-  dl.contact-item
-    dt= __('contact-email')
-    dd: a.btn(href="mailto:zinegilou@hotmail.com&cc=zinegilou85@gmail.com") zinegilou@hotmail.com
-    dt= __('contact-card')
+        iframe(
+          width="600", height="450", frameborder="0", style="border:0",
+          src="https://www.google.com/maps/embed/v1/place?q=All%20In%201%20Guesthouse%20Phra%20Sing%20Province%20de%20Chiang%20Mai%20Tha%C3%AFlande&key=AIzaSyCQe2_MaDcjolbMp0QWQOjW-sMbE0bc7ac")

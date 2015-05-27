@@ -1,9 +1,6 @@
 section#rooms: .section-in
   h1.u-title= __('rooms-title')
-  //- dl
-  //-   dt 22
-  //-   dd rooms
-  p 22 rooms on offer, all equipped
+  p 20 rooms on offer, all equipped
 
   .rooms-images
     img(src="room-double.jpg")
@@ -11,34 +8,33 @@ section#rooms: .section-in
 
   .rooms-description
     dl
-      dt Beds
-      dd double or twin
-
+      dt= __('rooms-beds')
+      dd!= __('rooms-beds-desc')
     dl
-      dt Bathroom
-      dd private with hot water
-
+      dt= __('rooms-bathroom')
+      dd!= __('rooms-bathroom-desc')
     dl
-      dt Wifi
-      dd free connection
-
+      dt= __('rooms-ac')
+      dd!= __('rooms-ac-desc')
     dl
-      dt Tv
-      dd Cable (50 channels) <br> DVD player
-
+      dt= __('rooms-wifi')
+      dd!= __('rooms-wifi-desc')
     dl
-      dt Fridge
-      dd with mini bar
-
+      dt= __('rooms-tv')
+      dd!= __('rooms-tv-desc')
     dl
-      dt Service
-      dd Daily room service
+      dt= __('rooms-fridge')
+      dd!= __('rooms-fridge-desc')
+    dl
+      dt= __('rooms-service')
+      dd!= __('rooms-service-desc')
 
   .rooms-price
     .rooms-price-in
       h2 Rates 2015
       p: small (According to the season and the length of stay)
-      p: strong 650 to 790 baht
+      //- p: strong 650 (low) to 799 (high) baht
+      p: strong 650 to 799 baht
       p: small Monthly rates available during low season
     .rooms-price-in
       h2 For booking

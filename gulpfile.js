@@ -59,7 +59,7 @@ gulp.task('css', function() {
     .pipe($.plumber({errorHandler: onError}))
     .pipe($.if(args.prod, cssProd(), cssDev()))
     .pipe(gulp.dest(dest[env]))
-    .pipe($.filter(['*', '!*.map']))
+    // .pipe($.filter(['*', '!*.map']))
     // .pipe(reload({stream:true}));
 });
 
@@ -99,7 +99,7 @@ gulp.task('default', ['browser-sync', 'watch'], function () {});
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync.init(null, {
     proxy: 'http://localhost:5000',
-    files: ['.tmp/**/*.*', 'public/**/*.*'],
+    files: ['.tmp/**/*.*', 'public/**/*.*', '!.tmp/**/*.map'],
     open: false,
     port: 7000,
   });
