@@ -43,6 +43,7 @@ function msg(message) {
 ////////
 
 //----- STYLUS TO CSS
+
 var cssProd = lazypipe()
   .pipe($.stylus, { compress: true})
   .pipe($.autoprefixer);
@@ -59,10 +60,7 @@ gulp.task('css', function() {
     .pipe($.plumber({errorHandler: onError}))
     .pipe($.if(args.prod, cssProd(), cssDev()))
     .pipe(gulp.dest(dest[env]))
-    // .pipe($.filter(['*', '!*.map']))
-    // .pipe(reload({stream:true}));
 });
-
 
 //----- ICONS
 
@@ -77,6 +75,9 @@ gulp.task('icons', function() {
     .pipe(gulp.dest('./views'))
 });
 
+//----- all together
+
+gulp.task('build', ['css', 'icons']);
 
 ////////
 // DEV
