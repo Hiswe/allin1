@@ -1,7 +1,10 @@
+include ./mixins/icon
+
 doctype html
 html(lang="#{getLocale()}")
   include _head
   body
+    include svg-symbols.svg
     include _header
     #main
       include presentation

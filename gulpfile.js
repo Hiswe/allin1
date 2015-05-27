@@ -7,6 +7,7 @@ var gulp        = require('gulp');
 var $           = require('gulp-load-plugins')();
 var lazypipe    = require('lazypipe');
 var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 // “Global” variables
 var env         = args.prod ? 'prod' : 'dev';
 var dest        = {
@@ -41,7 +42,7 @@ function msg(message) {
 // BUILD
 ////////
 
-// stylus to css
+//----- STYLUS TO CSS
 var cssProd = lazypipe()
   .pipe($.stylus, { compress: true})
   .pipe($.autoprefixer);
@@ -63,6 +64,18 @@ gulp.task('css', function() {
 });
 
 
+//----- ICONS
+
+gulp.task('icons', function() {
+  return gulp
+    .src('views/icons/*.svg')
+    .pipe($.svgSymbols({
+      templates: ['default-svg'],
+      id:     'icon-%f',
+      title:  false,
+    }))
+    .pipe(gulp.dest('./views'))
+});
 
 
 ////////
@@ -72,12 +85,10 @@ gulp.task('css', function() {
 gulp.task('watch', function() {
   // $.livereload.listen();
   gulp.watch(['./css/**/*.styl'], ['css']);
-  // gulp.watch(['./assets/js/**/*.coffee', './assets/js/**/*.js'], ['js']);
-  // gulp.watch('./views/**/*.jade')
-  // .on('change', function() {
-  //   // $.notify(msg('reload html'));
-  //   // $.livereload.changed('index.html');
-  // });
+  gulp.watch(['./views/icons/*.svg'], ['icons']);
+  gulp
+    .watch(['./views/**/*.jade', './views/*.svg'])
+    .on('change', browserSync.reload);
 });
 
 // browser-sync + nodemon
@@ -98,7 +109,7 @@ var init = true;
 gulp.task('nodemon', function (cb) {
   return $.nodemon({
     script: 'index.js',
-    ext: 'js jade json',
+    ext: 'js json',
     ignore: ['node_modules/*', 'gulpfile.js'],
     env:    { 'NODE_ENV': 'development' }
   }).on('start', function () {

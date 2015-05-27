@@ -3,7 +3,88 @@
   background: $c-rooms url('moat.svg') repeat-x bottom center;
   background-size: 75px 20px;
 
-  h1 {
+  h1,
+  h2  {
     color: $c-darkest;
   }
+
+  h2 {
+    font-family: $f-cursive;
+    px2rem(32);
+    border-bottom: 1px solid $c-dark;
+
+    +mq('small-only') {
+      text-align: center;
+    }
+  }
+
+  .rooms-images {
+    padding-bottom: $gutter;
+
+    +mq('medium-up') {
+      img {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .rooms-description {
+    text-align: center;
+  }
+
+  dl,
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  dl {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    margin-bottom: 1em;
+    text-align: center;
+
+    +mq('medium-up') {
+      width: 25%;
+    }
+  }
+
+  dt {
+    font-family: $f-cursive;
+    px2rem(26);
+
+  }
+  dd {
+    color: $c-darkest;
+    px2rem(14);
+  }
+
+  strong {
+    display: block;
+    color: $c-darkest;
+
+    +mq('small-only') {
+      text-align: center;
+    }
+  }
+
+  +mq('medium-up') {
+    .rooms-price-in {
+      display: inline-block;
+      width: 50%;
+      vertical-align: top;
+
+      &:nth-child(odd) {
+        padding-right: $gutter;
+      }
+      &:nth-child(even) {
+        padding-left: $gutter;
+      }
+    }
+  }
+
+
 }

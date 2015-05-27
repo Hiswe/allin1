@@ -7,3 +7,85 @@
     color: $c-service-dark;
   }
 }
+
+.services-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+//   clearfix();
+}
+.services-item {
+
+
+  i {
+    display: block;
+    height: 100px;
+    width: @height;
+    border-radius: @height;
+    background: rgba($c-service-dark, .5);
+    // border: 2px solid rgba($c-service-dark, .5);
+    margin: 0 auto $gutter-2;
+    text-align: center;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .svgicon {
+      // fill: $c-service-dark;
+      fill: $c-light;
+      vertical-align: middle;
+    }
+  }
+
+  +mq('small-only') {
+    padding-bottom: $2-gutter;
+    text-align: left;
+
+    display: flex;
+    align-items: center;
+
+    i,
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    span {
+      width: 55%;
+      padding-left: $gutter;
+    }
+
+    i {
+      flex: 0 0 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    span {
+      flex: 1 1 auto;
+    }
+
+    &:nth-child(even) span {
+      order: -1;
+      padding-left: 0;
+      padding-right: $gutter-4;
+    }
+
+  }
+}
+
+
++mq('medium-up') {
+  .services-item {
+    display: inline-block;
+    text-align: center;
+    height: 180px;
+    width: 33.33333%;
+    vertical-align: top;
+    margin: $gutter 0 0;
+    padding: 0 $3-gutter;
+  }
+}
