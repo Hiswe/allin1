@@ -8,3 +8,11 @@ header
       li: a(href="#rooms") #{__('rooms')}
       li: a(href="#services") #{__('services')}
       li: a(href="#contact") #{__('contact')}
+
+  .header-lang
+    if getLocale() === 'fr'
+      a(href="/?lang=en")
+        +icon('flag-en')
+    else
+      a(href="/?lang=fr")
+        +icon('flag-fr')

@@ -91,6 +91,33 @@ header {
         color: $c-white;
       }
     }
+  }
+}
 
+.header-lang {
+
+  a {
+    border: 0;
+  }
+
+  .svgicon {
+    height: 25px;
+    width: 38px;
+  }
+
+  +mq('small-only') {
+    border-top: 1px solid rgba($c-brand-light, .25);
+
+    a {
+      display: block;
+      text-align: center;
+      padding: $gutter-4 0;
+    }
+  }
+
+  +mq('medium-up') {
+    position: absolute;
+    top: $gutter;
+    right: $gutter;
   }
 }
