@@ -24,7 +24,7 @@ function hide() {
   Velocity(button, 'fadeOut');
 }
 function scroll(e) {
-  console.log('scroll', window.scrollY, viewportHeight, window.scrollY > viewportHeight);
+  console.log('scroll event', window.scrollY, viewportHeight, window.scrollY > viewportHeight);
   if (window.scrollY > viewportHeight && isVisible === false) return show();
   if (window.scrollY < viewportHeight && isVisible === true) return hide();
 }

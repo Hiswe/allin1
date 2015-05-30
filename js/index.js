@@ -2,11 +2,11 @@
 
 console.log('all in 1');
 
+// Libs
 require('fastclick')(document.body);
-// Velocity will expose itself globally :(
-require('velocity-animate');
+require('velocity-animate'); // Velocity will expose itself globally :(
 
-
-//
+// App
 require('./menu');
 require('./back-to-top');
+require('./scroll-to');

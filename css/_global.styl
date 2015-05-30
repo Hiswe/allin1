@@ -56,7 +56,6 @@ img {
   background: $c-link;
   display: block;
   color: $c-dark;
-  // border: 1px solid $c-dark;
   border: 0;
   box-shadow: 2px 2px 0 0 rgba($c-dark, .5);
   border-radius: $gutter-4;
@@ -73,9 +72,11 @@ img {
   position: fixed;
   height: 40px;
   width: @height;
-  background: black;
+  background: rgba(black, .75);
+  border: 0;
   z-index: 3;
-  bottom: $gutter;
-  right: $gutter;
+  bottom: $gutter-2;
+  right: $gutter-2;
   display: none;
+  border-radius: $gutter-2;
 }

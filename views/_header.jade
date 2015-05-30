@@ -6,9 +6,9 @@ header#header
   .sticky-wrapper.header-nav-out.js-menu: nav.bg-header-sticky.header-nav
     ul.header-nav-in
       //- li: a(href="#home") #{__('home')}
-      li: a(href="#rooms") #{__('rooms-title')}
-      li: a(href="#services") #{__('services-title')}
-      li: a(href="#contact") #{__('contact')}
+      li: a.js-scroll-to(href="#rooms") #{__('rooms-title')}
+      li: a.js-scroll-to(href="#services") #{__('services-title')}
+      li: a.js-scroll-to(href="#contact") #{__('contact')}
       li.lang
         .header-lang
           if getLocale() === 'fr'
