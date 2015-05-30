@@ -4,6 +4,18 @@ doctype html
 html(lang="#{getLocale()}")
   include _head
   body
+    noscript: style.
+      .header-logo a {
+        text-align: center;
+      }
+      .header-nav-out {
+        display: block;
+      }
+      .header-toggle-menu {
+        display: none;
+      }
+
+    //- #skrollr-body
     include svg-symbols.svg
     include _header
     #main
@@ -11,3 +23,9 @@ html(lang="#{getLocale()}")
       include rooms
       include services
       include contact
+
+    a.to-top.js-to-top(href="#header") top
+    script(src="lib.js")
+    script(src="index.js")
+    script.
+      require('allin1');

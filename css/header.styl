@@ -18,11 +18,15 @@ header {
   a {
     display: block;
     border: 0;
-    text-align: center;
+    padding: 0 $gutter;
   }
   img {
     width: 230px;
     height: 55px;
+  }
+
+  +mq('medium-up') {
+    text-align: center;
   }
 }
 
@@ -36,6 +40,61 @@ header {
     br {
       display: none;
     }
+  }
+}
+
+.header-toggle-menu {
+  $$stroke = 6px;
+  position: absolute;
+  top: $gutter;
+  right: $gutter;
+  z-index: 2;
+  background: none;
+  border: 0;
+  padding: 0;
+
+  // icon
+  & {
+    width: 40px;
+    height: 34px;
+    border: solid $c-dark;
+    border-width: $$stroke 0;
+    font-size: 1px;
+    color: rgba(0,0,0,0);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background: $c-dark;
+    height: $$stroke;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  +mq('medium-up') {
+    display: none;
+  }
+}
+
+.header-nav-out {
+  display: none;
+
+  +mq('small-only') {
+    &.is-open {
+      padding-top: 4em;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: $c-darkest;
+    }
+  }
+
+  +mq('medium-up') {
+    display: block;
   }
 }
 
@@ -96,23 +155,9 @@ header {
 
 .header-lang {
 
-  a {
-    border: 0;
-  }
-
   .svgicon {
     height: 25px;
     width: 38px;
-  }
-
-  +mq('small-only') {
-    border-top: 1px solid rgba($c-brand-light, .25);
-
-    a {
-      display: block;
-      text-align: center;
-      padding: $gutter-4 0;
-    }
   }
 
   +mq('medium-up') {

@@ -8,6 +8,9 @@ var $           = require('gulp-load-plugins')();
 var lazypipe    = require('lazypipe');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
+// Browserify dependencies
+var browserify  = require('browserify');
+var source      = require('vinyl-source-stream');
 // “Global” variables
 var env         = args.prod ? 'prod' : 'dev';
 var dest        = {
@@ -41,6 +44,61 @@ function msg(message) {
 ////////
 // BUILD
 ////////
+
+//----- JAVASCRIPT
+
+var compress = lazypipe()
+  .pipe($.streamify, $.uglify)
+  .pipe($.streamify, $.stripDebug);
+  // .pipe($.gzip, { append: false });
+
+var sourcemaps = lazypipe()
+  .pipe(function () {
+    return $.streamify($.sourcemaps.init({loadMaps: true}))
+  })
+  .pipe(function () {
+    return  $.streamify($.sourcemaps.write('.'))
+  });
+
+//----- JAVASCRIPT
+
+var libs = [
+  'fastclick',
+  'dominus',
+  // 'skrollr',
+  'debounce',
+  'velocity-animate',
+];
+var basedir = __dirname + '/js';
+
+gulp.task('lib', function() {
+  var browserifyLib = browserify({
+    basedir:  basedir,
+    noParse:  libs,
+    debug:    true,
+  })
+  .require(libs)
+  .bundle()
+  .pipe(source('lib.js'))
+  .pipe($.if(args.prod, compress(), sourcemaps()))
+  .pipe(gulp.dest(dest[env]));
+});
+
+// usefull packages for after
+
+gulp.task('app', function () {
+  browserify({
+    basedir:  basedir,
+    debug:    true,
+  })
+  .external(libs)
+  .require(basedir + '/index.js', {expose: 'allin1'})
+  .bundle()
+  .on('error', onError)
+  .pipe(source('index.js'))
+  .pipe($.if(args.prod, compress(), sourcemaps()))
+  .pipe(gulp.dest(dest[env]));
+});
 
 //----- STYLUS TO CSS
 
@@ -77,18 +135,18 @@ gulp.task('icons', function() {
 
 //----- all together
 
-gulp.task('build', ['css', 'icons']);
+gulp.task('build', ['app', 'lib', 'css', 'icons']);
 
 ////////
 // DEV
 ////////
 
 gulp.task('watch', function() {
-  // $.livereload.listen();
   gulp.watch(['./css/**/*.styl'], ['css']);
+  gulp.watch(['./js/**/*.js'], ['app']);
   gulp.watch(['./views/icons/*.svg'], ['icons']);
   gulp
-    .watch(['./views/**/*.jade', './views/*.svg'])
+    .watch(['./views/**/*.jade', './views/*.svg', './locales/*.js'])
     .on('change', browserSync.reload);
 });
 
@@ -100,7 +158,7 @@ gulp.task('default', ['browser-sync', 'watch'], function () {});
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync.init(null, {
     proxy: 'http://localhost:5000',
-    files: ['.tmp/**/*.*', 'public/**/*.*', '!.tmp/**/*.map'],
+    files: ['.tmp/**/*.*', '!.tmp/**/*.map'],
     open: false,
     port: 7000,
   });
@@ -111,7 +169,7 @@ gulp.task('nodemon', function (cb) {
   return $.nodemon({
     script: 'index.js',
     ext: 'js json',
-    ignore: ['node_modules/*', 'gulpfile.js'],
+    ignore: ['node_modules/*', 'gulpfile.js', '.tmp/*', 'js/*', 'public/*', 'locales/*'],
     env:    { 'NODE_ENV': 'development' }
   }).on('start', function () {
     // https://gist.github.com/sogko/b53d33d4f3b40d3b4b2e#comment-1457582
