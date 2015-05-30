@@ -26,5 +26,19 @@
 	"rooms-wifi-desc": "free connection <br> at high speed (optic fiber)",
 	"rooms-tv-desc": "Cable (50 channels) <br> DVD player",
 	"rooms-fridge-desc": "with mini bar",
-	"rooms-service-desc": "Daily room service"
+	"rooms-service-desc": "Daily room service",
+	"rooms-desc": "20 rooms on offer, all equipped",
+	"services-breakfast": "Breakfast from 7.30 a.m.",
+	"services-bar": "Bar and recreation area in our small tropical garden",
+	"services-wifi": "Free wifi and internet connection (optical fiber)",
+	"services-massage": "Massage parlour",
+	"services-laundry": "Laundry",
+	"services-motorcycle": "Motorbike rental",
+	"services-activities": "activities",
+	"contact-download-directions": "Download printable directions",
+	"rooms-booking": "For booking",
+	"rooms-contact": "contact us",
+	"rooms-season-low": "low season",
+	"rooms-season-high": "high season",
+	"rooms-rates": "Rates"
 }

@@ -3,7 +3,8 @@
   background: $c-service url('moat-grass-lite.svg') repeat-x bottom center;
   background-size: 60px 30px;
 
-  h1 {
+  h1,
+  h2 {
     color: $c-service-dark;
   }
 }
@@ -12,10 +13,9 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-//   clearfix();
 }
-.services-item {
 
+.services-item {
 
   i {
     display: block;
@@ -23,7 +23,6 @@
     width: @height;
     border-radius: @height;
     background: rgba($c-service-dark, .5);
-    // border: 2px solid rgba($c-service-dark, .5);
     margin: 0 auto $gutter-2;
     text-align: center;
 
@@ -35,7 +34,6 @@
     }
 
     .svgicon {
-      // fill: $c-service-dark;
       fill: $c-light;
       vertical-align: middle;
     }
@@ -77,7 +75,6 @@
   }
 }
 
-
 +mq('medium-up') {
   .services-item {
     display: inline-block;
@@ -87,5 +84,16 @@
     vertical-align: top;
     margin: $gutter 0 0;
     padding: 0 $3-gutter;
+  }
+}
+
+.activities-list {
+  padding-left: 1em;
+
+  li {
+    color: $c-service-dark;
+  }
+  span {
+    color: $c-lightest;
   }
 }

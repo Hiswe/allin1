@@ -1,5 +1,5 @@
 #rooms {
-  padding-bottom: 80px;
+  padding-bottom: $2-gutter;
   background: $c-rooms url('moat.svg') repeat-x bottom center;
   background-size: 75px 20px;
 
@@ -11,7 +11,6 @@
   h2 {
     font-family: $f-cursive;
     px2rem(32);
-    border-bottom: 1px solid $c-dark;
 
     +mq('small-only') {
       text-align: center;
@@ -47,6 +46,13 @@
     margin-bottom: 1em;
     text-align: center;
 
+    +mq('small-only') {
+      [lang="fr"] & {
+        display: block;
+        width: auto;
+      }
+    }
+
     +mq('medium-up') {
       width: 25%;
     }
@@ -57,36 +63,49 @@
     px2rem(26);
 
   }
+
   dd {
     color: $c-darkest;
     px2rem(14);
   }
+}
 
-  strong {
-    display: block;
+.rooms-price-in {
+  table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 1px solid rgba($c-dark);
+    border-bottom: 1px solid rgba($c-dark);
+  }
+  th,
+  td {
+    padding: $gutter-2 0;
+  }
+  tr > :first-child {
+    border-right: $gutter solid $c;
+  }
+  tr > :last-child {
+    border-left: $gutter solid $c;
+  }
+  td {
     color: $c-darkest;
+    border-top: 1px solid rgba($c-dark);
+  }
+  strong {
     font-weight: 400;
-    px2rem(26);
-
-    +mq('small-only') {
-      text-align: center;
-    }
+    px2rem(32);
   }
-
   +mq('medium-up') {
-    .rooms-price-in {
-      display: inline-block;
-      width: 50%;
-      vertical-align: top;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
 
-      &:nth-child(odd) {
-        padding-right: $gutter;
-      }
-      &:nth-child(even) {
-        padding-left: $gutter;
-      }
+    &:nth-child(odd) {
+      padding-right: $gutter;
+    }
+    &:nth-child(even) {
+      padding-left: $gutter;
     }
   }
-
-
 }
