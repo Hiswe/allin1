@@ -24,7 +24,8 @@ html(lang="#{getLocale()}")
       include services
       include contact
 
-    a.to-top.js-to-top.js-scroll-to(href="#header") top
+    a.to-top.js-to-top.js-scroll-to(href="#header")
+      +icon('top')
     script(src="lib.js")
     script(src="index.js")
     script.
