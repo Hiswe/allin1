@@ -73,13 +73,17 @@ header {
 
   +mq('small-only') {
     &.is-open {
-      padding-top: 4em;
+      padding-top: 11px;
       display: block;
       position: absolute;
       top: 0;
       right: 0;
       left: 0;
       background: $c-darkest;
+
+      li:first-child {
+        border: 0;
+      }
     }
   }
 
