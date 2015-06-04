@@ -3,9 +3,9 @@
 	"rooms": "rooms",
 	"services": "Facilities",
 	"contact": "contact",
-	"baseline": "As comfortable as a hotel<br /> but at a guesthouse price",
+	"baseline": "the comfort of a small hotel,<br /> at guesthouse rates",
 	"contact-pres": "All in 1 Guesthouse is located right in the city center. It's a 5 minutes walk from Thapae Gate and the Sunday Market, a 10 minutes walk from the Night Bazaar. From the Airport, the Railway station or the Bus station, it will take around 10-15 minutes to get there.",
-	"contact-adress": "Adress",
+	"contact-adress": "Address",
 	"contact-phone": "Phone us:",
 	"contact-mobile": "Mobile phone:",
 	"contact-email": "Mail us:",
@@ -45,9 +45,9 @@
 	"presentation-1": "Open 24h/24, we’ll be glad to help you to spend the best time possible in Chiang Mai and as well for the rest of your stay in the whole country.",
 	"presentation-9": "Warm welcome to lanna kingdom.",
 	"rooms-monthly-rates": "Monthly rates available during low season",
-	"services-activities-1": "services-activities-1",
-	"services-activities-2": "services-activities-2",
-	"services-activities-3": "services-activities-3",
-	"services-activities-4": "services-activities-4",
-	"services-informations": "services-informations"
+	"services-activities-1": "One day visit upcountry (All in 1’s favorite)",
+	"services-activities-2": "day(s) out in an elephant farm, small family structure (highly recommended)",
+	"services-activities-3": "1/2/3 days treks",
+	"services-activities-4": "zipline, moutain bike, cooking course, white water rafting, excursions or visits to Doi Suthep, Doi Inthanon, Golden Triangle, Hot Springs, and many others",
+	"services-informations": "All informations and rates will be provided at the guesthouse"
 }
