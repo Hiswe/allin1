@@ -40,5 +40,14 @@
 	"rooms-contact": "contact us",
 	"rooms-season-low": "low season",
 	"rooms-season-high": "high season",
-	"rooms-rates": "Rates"
+	"rooms-rates": "Rates",
+	"presentation-0": "ALL IN 1 GUESTHOUSE is ideally located in Chiang Mai’s historical area, 500 meters away from both Saturday and Sunday Markets, and less than 1 kilometer away from the daily night bazaar.",
+	"presentation-1": "Open 24h/24, we’ll be glad to help you to spend the best time possible in Chiang Mai and as well for the rest of your stay in the whole country.",
+	"presentation-9": "Warm welcome to lanna kingdom.",
+	"rooms-monthly-rates": "Monthly rates available during low season",
+	"services-activities-1": "services-activities-1",
+	"services-activities-2": "services-activities-2",
+	"services-activities-3": "services-activities-3",
+	"services-activities-4": "services-activities-4",
+	"services-informations": "services-informations"
 }

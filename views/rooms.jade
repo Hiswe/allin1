@@ -1,6 +1,5 @@
 section#rooms: .section-in
   h1.u-title= __('rooms-title')
-  //-  20 rooms on offer, all equipped
   p!= __('rooms-desc')
 
   .rooms-images
@@ -35,7 +34,6 @@ section#rooms: .section-in
       h2
         | #{__('rooms-rates')}
         | 2015
-      //- p: small (According to the season and the length of stay)
       table
         thead
           tr
@@ -44,12 +42,12 @@ section#rooms: .section-in
         tbody
           tr
             td
-              strong 650
+              strong 679
               |  baht
             td
               strong 799
               |  baht
-      p: small Monthly rates available during low season
+      p: small= __('rooms-monthly-rates')
     .rooms-price-in
       h2!= __('rooms-booking')
       p: a.btn(href="#contact")= __('rooms-contact')

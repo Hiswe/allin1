@@ -37,5 +37,14 @@
 	"rooms-contact": "nous contacter",
 	"rooms-season-low": "saison basse",
 	"rooms-season-high": "saison haute",
-	"rooms-rates": "Prix"
+	"rooms-rates": "Prix",
+	"presentation-0": "ALL IN 1 GUESTHOUSE est idéalement situé en plein quartier historique de Chiang Mai, à 500 mètres du marché du samedi et de celui du dimanche, à moins d'un kilomètre du Night Bazaar.",
+	"presentation-1": "Ouverts 24h/24, nous vous conseillerons au mieux pour organiser toutes vos visites et activités à Chiang Mai et pourrons vous aider pour le reste de votre séjour dans le pays.",
+	"presentation-9": "Nous vous souhaitons la bienvenue dans le royaume du million de rizieres (lanna)",
+	"rooms-monthly-rates": "Des tarifs mensuels sont disponibles pendant la basse saison",
+	"services-activities-1": "journée visite hors des sentiers battus",
+	"services-activities-2": "treks de 1, 2 ou 3 jours",
+	"services-activities-3": "sorties avec les éléphants en petite structure familiale",
+	"services-activities-4": "tyroliennes, rafting en canoë,  cours de cuisine, sorties vtt, rafting, excursion au triangle d'or, au Doi Inthanon, visites en scooter ou en taxi et conseils de visites des temples, du Doi Suthep, des sources d'eau chaude, etc.tyroliennes, rafting en canoë,  cours de cuisine, sorties vtt, rafting, excursion au triangle d'or, au Doi Inthanon, visites en scooter ou en taxi et conseils de visites des temples, du Doi Suthep, des sources d'eau chaude, etc.",
+	"services-informations": "Tous les renseignements et tarifs vous seront fournis sur place."
 }
