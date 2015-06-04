@@ -28,7 +28,7 @@ module.exports = function () {
 
   // gzip
   app.use(compression());
-  // app.use(favicon(path.join(__dirname, '/../public/media/favicon.png')));
+  app.use(favicon(path.join(__dirname, '/../public/favicon.png')));
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use(methodOverride());
