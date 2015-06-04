@@ -95,5 +95,12 @@
   }
   span {
     color: $c-lightest;
+    // for first-letter to apply
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/::first-letter
+    display: block;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 }
