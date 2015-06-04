@@ -4,6 +4,7 @@ logs
 
 # dev build files
 .tmp
+public/*.html
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git

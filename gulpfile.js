@@ -8,6 +8,7 @@ var $           = require('gulp-load-plugins')();
 var lazypipe    = require('lazypipe');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
+var merge       = require('merge-stream');
 // Browserify dependencies
 var browserify  = require('browserify');
 var source      = require('vinyl-source-stream');
@@ -132,6 +133,42 @@ gulp.task('icons', function() {
     }))
     .pipe(gulp.dest('./views'))
 });
+
+//----- HTML
+
+// gulp.task('html', ['icons'], function() {
+gulp.task('html', function() {
+
+  function getParams(lang) {
+    return {
+      pretty: false,
+      locals: {
+        isStatic: true,
+        getLocale: function () { return lang; },
+        __: function (key) { return dico[lang][key]; }
+      },
+    };
+  }
+
+  var dico = {
+    en: JSON.parse(fs.readFileSync(__dirname + '/locales/en.js')),
+    fr: JSON.parse(fs.readFileSync(__dirname + '/locales/fr.js')),
+  };
+
+  var en =  gulp
+    .src('views/_layout.jade')
+    .pipe($.jade(getParams('en')))
+    .pipe($.rename('index.html'))
+
+  var fr =  gulp
+    .src('views/_layout.jade')
+    .pipe($.jade(getParams('fr')))
+    .pipe($.rename('index-fr.html'))
+
+  merge(en, fr)
+    .pipe(gulp.dest(dest['prod']))
+});
+
 
 //----- all together
 

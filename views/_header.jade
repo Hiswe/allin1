@@ -12,9 +12,18 @@ header#header
       li: a.js-scroll-to(href="#contact") #{__('contact')}
       li.lang
         .header-lang
-          if getLocale() === 'fr'
-            a(href="/?lang=en")
-              +icon('flag-en')
+          if isStatic
+            if getLocale() === 'fr'
+              a(href="")
+                +icon('flag-en')
+            else
+              a(href="index-fr.html")
+                +icon('flag-fr')
+
           else
-            a(href="/?lang=fr")
-              +icon('flag-fr')
+            if getLocale() === 'fr'
+              a(href="/?lang=en")
+                +icon('flag-en')
+            else
+              a(href="/?lang=fr")
+                +icon('flag-fr')
