@@ -1,5 +1,12 @@
 # allin1
 
-## TODO
+## Installation
 
-- offline mode
+- node
+- imagemagick `brew install imagemagick`
+
+## launch
+
+```
+npm install && npm start
+```

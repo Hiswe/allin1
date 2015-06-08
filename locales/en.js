@@ -49,5 +49,15 @@
 	"services-activities-2": "day(s) out in an elephant farm, small family structure (highly recommended)",
 	"services-activities-3": "1/2/3 days treks",
 	"services-activities-4": "zipline, moutain bike, cooking course, white water rafting, excursions or visits to Doi Suthep, Doi Inthanon, Golden Triangle, Hot Springs, and many others",
-	"services-informations": "All informations and rates will be provided at the guesthouse"
+	"services-informations": "All informations and rates will be provided at the guesthouse",
+	"presentation-image-1": "small tropical garden view",
+	"presentation-image-2": "small tropical garden view",
+	"rooms-image-1": "inside view of a room",
+	"rooms-image-2": "inside view of a room",
+	"rooms-image-3": "inside view of a room",
+	"rooms-image-4": "inside view of a room",
+	"activity-image-1": "waterfall",
+	"activity-image-2": "upcountry visit ",
+	"activity-image-3": "Doi Suthep",
+	"activity-image-4": "elephant farm"
 }

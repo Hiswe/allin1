@@ -46,5 +46,15 @@
 	"services-activities-2": "sorties avec les éléphants en petite structure familiale (chaudement recommandée)",
 	"services-activities-3": "treks de 1, 2 ou 3 jours",
 	"services-activities-4": "tyroliennes, rafting en canoe,  cours de cuisine, sorties vtt, excursions ou visites au Doi Suthep, au Doi Inthanon, au Triangle d'Or et beaucoup d'autres",
-	"services-informations": "Tous les renseignements et tarifs vous seront fournis sur place."
+	"services-informations": "Tous les renseignements et tarifs vous seront fournis sur place.",
+	"presentation-image-1": "vue du patio",
+	"presentation-image-2": "vue du patio",
+	"rooms-image-1": "vue intérieure d'une chambre",
+	"rooms-image-2": "vue intérieure d'une chambre",
+	"rooms-image-3": "vue intérieure d'une chambre",
+	"rooms-image-4": "vue intérieure d'une chambre",
+	"activity-image-1": "cascade",
+	"activity-image-2": "journée visite hors des sentiers battus",
+	"activity-image-3": "Doi Suthep",
+	"activity-image-4": "sorties avec les éléphants"
 }

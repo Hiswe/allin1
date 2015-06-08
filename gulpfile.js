@@ -66,9 +66,9 @@ var sourcemaps = lazypipe()
 var libs = [
   'fastclick',
   'dominus',
-  // 'skrollr',
   'debounce',
   'velocity-animate',
+  'imagesloaded',
 ];
 var basedir = __dirname + '/js';
 
@@ -120,6 +120,68 @@ gulp.task('css', function() {
     .pipe($.if(args.prod, cssProd(), cssDev()))
     .pipe(gulp.dest(dest[env]))
 });
+
+//----- IMAGES
+
+var x2 = lazypipe().pipe($.rename, {suffix: '@2x'});
+var x1 = lazypipe().pipe($.rename, function (path){ path.basename = path.basename.replace('@2x', '')});
+
+var getSizes = function (width, height) {
+  return {
+    x1: {
+      width: width,
+      height: height,
+      crop : true,
+    },
+    x2: {
+      width: width * 2,
+      height: height * 2,
+      crop : true,
+    },
+  };
+};
+
+gulp.task('home', function() {
+  var sizes = getSizes(960, 360);
+  return gulp
+    .src('img-src/home*.jpg')
+    .pipe($.imageResize(sizes.x2))
+    .pipe(x2())
+    .pipe(gulp.dest(dest.prod))
+    .pipe($.imageResize(sizes.x1))
+    .pipe(x1())
+    .pipe(gulp.dest(dest.prod));
+});
+
+gulp.task('rooms', function() {
+  var sizes = getSizes(480, 320);
+  var small = gulp
+    .src(['img-src/room*.jpg', 'img-src/activity-{1,2}.jpg'])
+    .pipe($.imageResize(sizes.x1))
+  var big   = gulp
+    .src(['img-src/room*.jpg', 'img-src/activity-{1,2}.jpg'])
+    .pipe($.imageResize(sizes.x2))
+    .pipe(x2())
+
+  return merge(small, big)
+  .pipe(gulp.dest(dest.prod));
+});
+
+gulp.task('activity', function() {
+  var sizes = getSizes(480, 320);
+  var small = gulp
+    .src(['img-src/activity-{3,4}.jpg'])
+    .pipe($.imageResize({height: 320}))
+  var big   = gulp
+    .src(['img-src/activity-{3,4}.jpg'])
+    .pipe($.imageResize({height: 320 * 2}))
+    .pipe(x2())
+
+  return merge(small, big)
+  .pipe(gulp.dest(dest.prod));
+});
+
+gulp.task('images', ['home', 'rooms', 'activity']);
 
 //----- ICONS
 
