@@ -68,7 +68,7 @@ var libs = [
   'dominus',
   'debounce',
   'velocity-animate',
-  'imagesloaded',
+  // 'imagesloaded',
 ];
 var basedir = __dirname + '/js';
 
@@ -85,8 +85,6 @@ gulp.task('lib', function() {
   .pipe(gulp.dest(dest[env]));
 });
 
-// usefull packages for after
-
 gulp.task('app', function () {
   browserify({
     basedir:  basedir,
@@ -99,6 +97,19 @@ gulp.task('app', function () {
   .pipe(source('index.js'))
   .pipe($.if(args.prod, compress(), sourcemaps()))
   .pipe(gulp.dest(dest[env]));
+});
+
+gulp.task('allin1', function () {
+  var browserifyLib = browserify({
+    basedir:  basedir,
+    noParse:  libs,
+    debug:    true,
+  })
+  .require(basedir + '/index.js', {expose: 'allin1'})
+  .bundle()
+  .pipe(source('allin1-app.js'))
+  .pipe(compress(), sourcemaps())
+  .pipe(gulp.dest(dest.prod));
 });
 
 //----- STYLUS TO CSS
@@ -199,7 +210,7 @@ gulp.task('icons', function() {
 //----- HTML
 
 // gulp.task('html', ['icons'], function() {
-gulp.task('html', function() {
+gulp.task('html', ['allin1'], function() {
 
   function getParams(lang) {
     return {

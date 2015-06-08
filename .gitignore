@@ -5,6 +5,7 @@ logs
 # dev build files
 .tmp
 public/*.html
+public/allin1-app.js
 img-src
 
 # Dependency directory
