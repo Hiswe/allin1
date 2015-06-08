@@ -3,7 +3,7 @@
 	"rooms": "chambres",
 	"services": "services",
 	"contact": "contact",
-	"baseline": "le comfort d’un petit hotel,<br> aux tarifs guesthouse",
+	"baseline": "le confort d’un petit hôtel,<br> aux tarifs guesthouse",
 	"rooms-title": "Chambres",
 	"rooms-beds": "Lits",
 	"rooms-beds-desc": "double ou jumeaux",
