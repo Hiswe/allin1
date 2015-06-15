@@ -48,7 +48,7 @@
 	"services-activities-1": "One day visit upcountry (All in 1’s favorite)",
 	"services-activities-2": "day(s) out in an elephant farm, small family structure (highly recommended)",
 	"services-activities-3": "1/2/3 days treks",
-	"services-activities-4": "zipline, moutain bike, cooking course, white water rafting, excursions or visits to Doi Suthep, Doi Inthanon, Golden Triangle, Hot Springs, and many others",
+	"services-activities-4": "zipline, mountain bike, cooking course, white water rafting, excursions or visits to Doi Suthep, Doi Inthanon, Golden Triangle, Hot Springs, and many others",
 	"services-informations": "All informations and rates will be provided at the guesthouse",
 	"presentation-image-1": "small tropical garden view",
 	"presentation-image-2": "small tropical garden view",

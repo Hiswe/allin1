@@ -2,6 +2,7 @@
 
 var fs          = require('fs');
 var args        = require('yargs').argv;
+var del         = require('del');
 // gulp related
 var gulp        = require('gulp');
 var $           = require('gulp-load-plugins')();
@@ -13,11 +14,14 @@ var merge       = require('merge-stream');
 var browserify  = require('browserify');
 var source      = require('vinyl-source-stream');
 // “Global” variables
-var env         = args.prod ? 'prod' : 'dev';
+var env         = args.prod || args.deploy ? 'prod' : 'dev';
+var isProd      = env === 'prod';
 var dest        = {
-  prod: 'public',
-  dev:  '.tmp',
+  prod:   'public',
+  dev:    '.tmp',
+  deploy: 'dist',
 };
+var currentDest   = args.prod ? dest.prod : args.deploy ? dest.deploy : dest.dev;
 
 ////////
 // MISC
@@ -72,8 +76,8 @@ var libs = [
 ];
 var basedir = __dirname + '/js';
 
-gulp.task('lib', function() {
-  var browserifyLib = browserify({
+gulp.task('lib', function () {
+  return browserify({
     basedir:  basedir,
     noParse:  libs,
     debug:    true,
@@ -81,12 +85,12 @@ gulp.task('lib', function() {
   .require(libs)
   .bundle()
   .pipe(source('lib.js'))
-  .pipe($.if(args.prod, compress(), sourcemaps()))
-  .pipe(gulp.dest(dest[env]));
+  .pipe($.if(isprod, compress(), sourcemaps()))
+  .pipe(gulp.dest(currentDest));
 });
 
 gulp.task('app', function () {
-  browserify({
+  return browserify({
     basedir:  basedir,
     debug:    true,
   })
@@ -95,12 +99,12 @@ gulp.task('app', function () {
   .bundle()
   .on('error', onError)
   .pipe(source('index.js'))
-  .pipe($.if(args.prod, compress(), sourcemaps()))
-  .pipe(gulp.dest(dest[env]));
+  .pipe($.if(isProd, compress(), sourcemaps()))
+  .pipe(gulp.dest(currentDest));
 });
 
 gulp.task('allin1', function () {
-  var browserifyLib = browserify({
+  return browserify({
     basedir:  basedir,
     noParse:  libs,
     debug:    true,
@@ -108,8 +112,8 @@ gulp.task('allin1', function () {
   .require(basedir + '/index.js', {expose: 'allin1'})
   .bundle()
   .pipe(source('allin1-app.js'))
-  .pipe(compress(), sourcemaps())
-  .pipe(gulp.dest(dest.prod));
+  .pipe(compress())
+  .pipe(gulp.dest(currentDest));
 });
 
 //----- STYLUS TO CSS
@@ -124,12 +128,12 @@ var cssDev = lazypipe()
     .pipe($.autoprefixer)
   .pipe($.sourcemaps.write, '.');
 
-gulp.task('css', function() {
+gulp.task('css', function () {
   return gulp
     .src('css/index.styl')
     .pipe($.plumber({errorHandler: onError}))
-    .pipe($.if(args.prod, cssProd(), cssDev()))
-    .pipe(gulp.dest(dest[env]))
+    .pipe($.if(isProd, cssProd(), cssDev()))
+    .pipe(gulp.dest(currentDest))
 });
 
 //----- IMAGES
@@ -158,13 +162,13 @@ gulp.task('home', function() {
     .src('img-src/home*.jpg')
     .pipe($.imageResize(sizes.x2))
     .pipe(x2())
-    .pipe(gulp.dest(dest.prod))
+    .pipe(gulp.dest(currentDest))
     .pipe($.imageResize(sizes.x1))
     .pipe(x1())
-    .pipe(gulp.dest(dest.prod));
+    .pipe(gulp.dest(currentDest));
 });
 
-gulp.task('rooms', function() {
+gulp.task('rooms', function () {
   var sizes = getSizes(480, 320);
   var small = gulp
     .src(['img-src/room*.jpg', 'img-src/activity-{1,2}.jpg'])
@@ -175,10 +179,10 @@ gulp.task('rooms', function() {
     .pipe(x2())
 
   return merge(small, big)
-  .pipe(gulp.dest(dest.prod));
+  .pipe(gulp.dest(currentDest));
 });
 
-gulp.task('activity', function() {
+gulp.task('activity', function () {
   var sizes = getSizes(480, 320);
   var small = gulp
     .src(['img-src/activity-{3,4}.jpg'])
@@ -189,14 +193,31 @@ gulp.task('activity', function() {
     .pipe(x2())
 
   return merge(small, big)
-  .pipe(gulp.dest(dest.prod));
+  .pipe(gulp.dest(currentDest));
 });
 
 gulp.task('images', ['home', 'rooms', 'activity']);
 
+//----- SVG images
+
+gulp.task('svg', function () {
+  return gulp
+    .src(dest.prod + '/*.svg')
+    .pipe($.svgmin())
+    .pipe(gulp.dest(dest.deploy));
+});
+
+//----- PDF
+
+gulp.task('pdf', function () {
+  return gulp
+    .src(dest.prod + '/*.pdf')
+    .pipe(gulp.dest(dest.deploy));
+});
+
 //----- ICONS
 
-gulp.task('icons', function() {
+gulp.task('icons', function () {
   return gulp
     .src('views/icons/*.svg')
     .pipe($.svgSymbols({
@@ -209,14 +230,15 @@ gulp.task('icons', function() {
 
 //----- HTML
 
-// gulp.task('html', ['icons'], function() {
-gulp.task('html', ['allin1'], function() {
+gulp.task('html', ['icons'], function () {
+  var revisions = require('./.tmp/rev-manifest.json');
 
   function getParams(lang) {
     return {
       pretty: false,
       locals: {
         isStatic: true,
+        revisions: revisions,
         getLocale: function () { return lang; },
         __: function (key) { return dico[lang][key]; }
       },
@@ -239,7 +261,7 @@ gulp.task('html', ['allin1'], function() {
     .pipe($.rename('index-fr.html'))
 
   merge(en, fr)
-    .pipe(gulp.dest(dest['prod']))
+    .pipe(gulp.dest(dest['deploy']))
 });
 
 
@@ -247,11 +269,31 @@ gulp.task('html', ['allin1'], function() {
 
 gulp.task('build', ['app', 'lib', 'css', 'icons']);
 
+//----- static deploy
+
+gulp.task('clean', function (cb) {
+  return del(['dist/*'], cb);
+});
+
+gulp.task('post-clean', function (cb) {
+  return del(['dist/index.css', 'dist/allin1-app.js'], cb);
+});
+
+gulp.task('deploy-rev', ['allin1', 'css'], function () {
+  gulp.src([dest['deploy'] + '/*.js', dest['deploy'] + '/*.css'])
+    .pipe($.rev())
+    .pipe(gulp.dest(dest['deploy']))
+    .pipe($.rev.manifest())
+    .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('deploy', ['html', 'images', 'svg', 'pdf', 'deploy-rev']);
+
 ////////
 // DEV
 ////////
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(['./css/**/*.styl'], ['css']);
   gulp.watch(['./js/**/*.js'], ['app']);
   gulp.watch(['./views/icons/*.svg'], ['icons']);
@@ -265,7 +307,7 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['browser-sync', 'watch'], function () {});
 
-gulp.task('browser-sync', ['nodemon'], function() {
+gulp.task('browser-sync', ['nodemon'], function () {
   browserSync.init(null, {
     proxy: 'http://localhost:5000',
     files: ['.tmp/**/*.*', '!.tmp/**/*.map'],

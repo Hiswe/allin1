@@ -21,7 +21,7 @@ html(lang="#{getLocale()}")
     a.to-top.js-to-top.js-scroll-to(href="#header")
       +icon('top')
     if isStatic
-      script(src="allin1-app.js")
+      script(src=revisions["allin1-app.js"])
     else
       script(src="lib.js")
       script(src="index.js")

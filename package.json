@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp build --dev && gulp",
-    "build": "gulp build --prod"
+    "build": "gulp build --prod",
+    "deploy": "gulp clean && gulp deploy --deploy && gulp post-clean"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "browser-sync": "^2.7.3",
     "browserify": "^10.2.3",
     "debounce": "^1.0.0",
+    "del": "^1.2.0",
     "dominus": "^5.0.0",
     "fastclick": "^1.0.6",
     "gulp": "^3.8.11",
@@ -48,11 +50,13 @@
     "gulp-nodemon": "^2.0.3",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
+    "gulp-rev": "^4.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-streamify": "0.0.5",
     "gulp-strip-debug": "^1.0.2",
     "gulp-stylus": "^2.0.2",
     "gulp-svg-symbols": "^0.3.1",
+    "gulp-svgmin": "^1.1.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
     "imagesloaded": "^3.1.8",

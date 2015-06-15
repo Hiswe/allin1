@@ -43,7 +43,7 @@
 	"presentation-9": "Nous vous souhaitons la bienvenue dans le royaume du million de rizieres (Lanna)",
 	"rooms-monthly-rates": "Tarifs mensuels disponibles pour la basse saison.",
 	"services-activities-1": "journée visite hors des sentiers battus (notre excursion favorite)",
-	"services-activities-2": "sorties avec les éléphants en petite structure familiale (chaudement recommandée)",
+	"services-activities-2": "sorties avec les éléphants en petite structure familiale (chaudement recommandées)",
 	"services-activities-3": "treks de 1, 2 ou 3 jours",
 	"services-activities-4": "tyroliennes, rafting en canoe,  cours de cuisine, sorties vtt, excursions ou visites au Doi Suthep, au Doi Inthanon, au Triangle d'Or et beaucoup d'autres",
 	"services-informations": "Tous les renseignements et tarifs vous seront fournis sur place.",

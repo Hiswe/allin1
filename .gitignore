@@ -7,6 +7,7 @@ logs
 public/*.html
 public/allin1-app.js
 img-src
+dist
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
