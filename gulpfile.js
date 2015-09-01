@@ -10,6 +10,7 @@ var lazypipe    = require('lazypipe');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 var merge       = require('merge-stream');
+var run         = require('run-sequence');
 // Browserify dependencies
 var browserify  = require('browserify');
 var source      = require('vinyl-source-stream');
@@ -85,7 +86,7 @@ gulp.task('lib', function () {
   .require(libs)
   .bundle()
   .pipe(source('lib.js'))
-  .pipe($.if(isprod, compress(), sourcemaps()))
+  .pipe($.if(isProd, compress(), sourcemaps()))
   .pipe(gulp.dest(currentDest));
 });
 
@@ -287,7 +288,14 @@ gulp.task('deploy-rev', ['allin1', 'css'], function () {
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('deploy', ['html', 'images', 'svg', 'pdf', 'deploy-rev']);
+gulp.task('deploy', function (cb) {
+  run(
+    ['clean'],
+    ['deploy-rev', 'images', 'svg', 'pdf'],
+    ['html', 'post-clean'],
+    cb
+    );
+});
 
 ////////
 // DEV
