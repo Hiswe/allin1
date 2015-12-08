@@ -140,7 +140,9 @@ gulp.task('css', function () {
 //----- IMAGES
 
 var x2 = lazypipe().pipe($.rename, {suffix: '@2x'});
-var x1 = lazypipe().pipe($.rename, function (path){ path.basename = path.basename.replace('@2x', '')});
+var x1 = lazypipe().pipe($.rename, function (path){
+  path.basename = path.basename.replace('@2x', '');
+});
 
 var getSizes = function (width, height) {
   return {

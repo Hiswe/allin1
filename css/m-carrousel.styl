@@ -1,3 +1,7 @@
+////////
+// CSS CAROUSEL
+////////
+
 .carrousel {
   padding-bottom: $gutter;
   list-style: none;
@@ -15,18 +19,56 @@
   }
 }
 
+////////
+// HOME
+////////
+
+$home-speed = 6s;
+
 .carrousel-1 {
   img {
     width: 100%;
   }
-  .carrousel-item:last-child {
+  .carrousel-item {
+    position: relative;
+    animation: fadeInfadeOutQuarter linear ($home-speed * 4);
+    animation-iteration-count: infinite;
+  }
+  .carrousel-item + .carrousel-item {
     position: absolute;
     top: 0;
     left: 0;
-    animation: fadeInfadeOut linear 12s;
-    animation-iteration-count: infinite;
+    opacity: 0;
+  }
+  for num in 0 1 2 3 {
+    .carrousel-item:nth-child({num + 1}) {
+      z-index: (4 - num);
+      animation-delay: (num * $home-speed);
+    }
   }
 }
+
+@keyframes fadeInfadeOutQuarter {
+  0% {
+    opacity:1;
+  }
+  25% {
+    opacity:1;
+  }
+  30% {
+    opacity:0;
+  }
+  95% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+////////
+// ROOMS & SERVICES
+////////
 
 @keyframes fadeInfadeOut {
   0% {
@@ -88,17 +130,6 @@
   }
 }
 
-
 #services .carrousel-item {
   background-color: $c-service;
-
-  &:nth-child(3n),
-  &:nth-child(4n) {
-    // overflow: hidden;
-    // img {
-    //   transform: translateY(-50%);
-    // }
-    // width: auto;
-    // height: 100%;
-  }
 }

@@ -3,14 +3,13 @@ section#rooms: .section-in
   p!= __('rooms-desc')
 
   ul.carrousel.carrousel-2.js-slide-carrousel.u-full
-    li.carrousel-item: img(src="room-3.jpg", srcset="room-3.jpg 1x, room-3@2x.jpg 2x",
-      width=480, height=320, alt=__("rooms-image-3"))
-    li.carrousel-item: img(src="room-4.jpg", srcset="room-4.jpg 1x, room-4@2x.jpg 2x",
-      width=480, height=320, alt=__("rooms-image-4"))
-    li.carrousel-item: img(src="room-1.jpg", srcset="room-1.jpg 1x, room-1@2x.jpg 2x",
-      width=480, height=320, alt=__("rooms-image-1"))
-    li.carrousel-item: img(src="room-2.jpg", srcset="room-2.jpg 1x, room-2@2x.jpg 2x",
-      width=480, height=320, alt=__("rooms-image-2"))
+    each val in [1, 2, 3, 4]
+      li.carrousel-item: img(
+        src="room-#{val}.jpg",
+        srcset="room-#{val}.jpg 1x, room-#{val}@2x.jpg 2x",
+        width=480,
+        height=320,
+        alt=__("rooms-image-" + val))
 
   .rooms-description
     dl

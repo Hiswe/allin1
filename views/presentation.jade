@@ -1,10 +1,13 @@
 section#presentation: .section-in
 
   ul.carrousel.carrousel-1.u-full
-    li.carrousel-item: img(src="home-1.jpg", srcset="home-1.jpg 1x, home-1@2x.jpg 2x"
-      width="960", height="320", alt=__("presentation-image-1"))
-    li.carrousel-item: img(src="home-2.jpg", srcset="home-2.jpg 1x, home-2@2x.jpg 2x"
-      width="960", height="320", alt=__("presentation-image-2"))
+    each val in [1, 2, 3, 4]
+      li.carrousel-item: img(
+        src="home-#{val}.jpg",
+        srcset="home-#{val}.jpg 1x, home-#{val}@2x.jpg 2x"
+        width="960",
+        height="320",
+        alt=__("presentation-image-" + val))
 
   p= __('presentation-0')
   p= __('presentation-1')
