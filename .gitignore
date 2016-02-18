@@ -8,6 +8,7 @@ public/*.html
 public/allin1-app.js
 img-src
 dist
+connexion.md
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git

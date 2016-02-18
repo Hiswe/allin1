@@ -14,5 +14,5 @@ npm install && npm start
 ## build for prod
 
 ```
-npm run deploy
+npm install && npm run deploy
 ```
